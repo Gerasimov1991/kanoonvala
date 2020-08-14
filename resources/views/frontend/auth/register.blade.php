@@ -35,7 +35,6 @@
       <div class="col-md-6 col-md-offset-3  form-group">
         <div class="row">
           <div class="col-md-12">
-            aaa
           <div class="alert alert-danger error-msg" style="display:none;"></div>
             <!-- Lawyer Box Open -->
             <div class="shadow_box">
