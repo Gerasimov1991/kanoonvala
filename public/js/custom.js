@@ -5,7 +5,8 @@ $(document).ready(function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         beforeSend: function(xhr) {
-            $('#preloader').show()
+            $(".err_common").css("display","none");
+            $('#preloader').show();
         },
         complete: function(data) {
             $('#preloader').fadeOut(300)
@@ -131,6 +132,7 @@ $(function() {
     // }
 
     $('.error-msg').hide();
+    $('.err_common').hide();
     var regoptions = {
         success: function(responseText, statusText) {
 
@@ -185,7 +187,8 @@ $(function() {
                 }
 
                 if (responseText.verified) {
-                    $("#isVerified").val(true)
+                    $("#isVerified").val(true);
+                    $(".err_common").hide();
                     $('#registration-form').submit();
                 }
             }
@@ -203,17 +206,20 @@ $(function() {
                 $.each(responseText.responseJSON.errors, function(key, value) {
                     msg += value.join('<br/>') + '<br />'
                     $('[name="' + key + '"]').parent('div').addClass("has-error")
+                    console.log(key + value)
+                    $('.err_'+key).show().html(value)
                 });
             } else {
                 msg = responseText.responseJSON.message
             }
 
-            $('.error-msg').show().html(msg);
+            // $('.error-msg').show().html(msg);
         },
         dataType: 'JSON'
     };
 
     if ($('#registration-form').length > 0) {
+        $(".err_common").hide();
         $('#registration-form').ajaxForm(regoptions); //this one
     }
 

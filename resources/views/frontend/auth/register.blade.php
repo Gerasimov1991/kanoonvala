@@ -35,7 +35,7 @@
       <div class="col-md-6 col-md-offset-3  form-group">
         <div class="row">
           <div class="col-md-12">
-          <div class="alert alert-danger error-msg" style="display:none;"></div>
+          {{-- <div class="alert alert-danger error-msg" style="display:none;"></div> --}}
             <!-- Lawyer Box Open -->
             <div class="shadow_box">
                 {{ Form::open(['route' => 'frontend.auth.register', 'class' => 'form-horizontal','id' => 'registration-form']) }}
@@ -44,18 +44,23 @@
                     @if($errors->has('first_name'))
                         <div class="help-block with-error">{{ $errors->first('first_name') }}</div>
                     @endif
+                    <p class="err_common err_first_name" style="display: none;color:#ee1111;"></p>                    
                 </div>
                 <div class="form-group {{$errors->first('last_name')?'has-error':''}}">
                     {{ Form::input('name', 'last_name', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.register-user.lastName')]) }}
                     @if($errors->has('last_name'))
                         <div class="help-block with-error">{{ $errors->first('last_name') }}</div>
                     @endif
+                    
+                    <p class="err_common err_last_name" style="display: none;color:#ee1111;"></p>
                 </div>
                 <div class="form-group {{$errors->first('email')?'has-error':''}}">
                     {{ Form::input('email', 'email', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.register-user.email')]) }}
                     <!-- @if($errors->has('email'))
                         <div class="help-block with-error">{{ $errors->first('email') }}</div>
                     @endif -->
+                    
+                    <p class="err_common err_email" style="display: none;color:#ee1111;"></p>
                 </div>
 				        <!-- <div class="form-group">
                     OR
@@ -69,14 +74,15 @@
                         <div class="help-block with-error">{{ $errors->first('mobile') }}</div>
                     @endif -->
 
-
+                    <p class="err_common err_mobile" style="display: none;color:#ee1111;"></p>
                     <!-- <input type="text" name="mobile" class="form-control"> -->
                 </div>
                 <div class="form-group {{$errors->first('password')?'has-error':''}}">
                     {{ Form::input('password', 'password', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.register-user.password')]) }}
                     @if($errors->has('password'))
                         <div class="help-block with-error">{!! implode("<br/>",$errors->get('password')) !!}</div>
-                    @endif
+                    @endif                    
+                    <p class="err_common err_password" style="display: none;color:#ee1111;"></p>
                 </div>
                 <div class="form-group {{$errors->first('password_confirmation')?'has-error':''}}">
                     {{ Form::input('password', 'password_confirmation', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.register-user.password_confirmation')]) }}
@@ -93,8 +99,8 @@
                         <div class="help-block with-error">{{ $errors->first('is_term_accept') }}</div>
 
                     @endif
-                    <!-- <h6 type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</h6> -->
-
+                    <!-- <h6 type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</h6> -->                    
+                    <p class="err_common err_is_term_accept" style="display: none;color:#ee1111;"></p>
                 </div><!--col-md-6-->
                 <div class="form-group">
                 <input type="hidden" name="isAdvocate" value="{{$routeName}}">

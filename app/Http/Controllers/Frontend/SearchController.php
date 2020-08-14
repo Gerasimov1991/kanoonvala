@@ -18,10 +18,10 @@ class SearchController extends Controller
      * @return \Illuminate\Http\Response
      */
     private $recordPerPage = 3;
-    public function index($specialization = "")
+    public function index(Request $request,$term)
     {
         // dd($specializaiont);
-        
+        $specialization = "";
         date_default_timezone_set('Asia/Kolkata');
        
         $cityList = DB::table('cities')->select(DB::raw('CONCAT(cities.city,", ",states.name) as city_name'),'cities.id')->join('states','states.id','=','cities.state_id')->get();
