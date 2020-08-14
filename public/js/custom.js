@@ -214,7 +214,7 @@ $(function() {
     };
 
     if ($('#registration-form').length > 0) {
-        $('#registration-form').ajaxForm(regoptions);
+        $('#registration-form').ajaxForm(regoptions); //this one
     }
 
     // Book Appointment 
