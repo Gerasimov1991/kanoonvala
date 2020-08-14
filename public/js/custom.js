@@ -210,10 +210,11 @@ $(function() {
                     $('.err_'+key).show().html(value)
                 });
             } else {
-                msg = responseText.responseJSON.message
+                msg = responseText.responseJSON.message;
+                $('.error-msg').show().html(msg);
             }
 
-            // $('.error-msg').show().html(msg);
+            // 
         },
         dataType: 'JSON'
     };
