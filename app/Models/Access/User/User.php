@@ -19,7 +19,7 @@ class User extends Authenticatable
 {
     use UserScope,
         UserAccess,
-        // Notifiable,
+        Notifiable,
         SoftDeletes,
         UserAttribute,
         UserRelationship,

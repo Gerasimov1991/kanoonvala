@@ -71,7 +71,7 @@ class RegisterController extends Controller
     {
     
             //    dd($request->all());
-                // die();
+            //     die();
         /*if (config('access.users.confirm_email')) {
         $user = $this->user->create($request->all());
         event(new UserRegistered($user));
@@ -93,7 +93,7 @@ class RegisterController extends Controller
         //  if(strpos($request->email, '.com') == true){
 
         // }
-        // dump($request->all());
+
         if ($request->mobile == "" && $request->email == "") {
             return response()->json([
                 'success' => false,
@@ -167,7 +167,7 @@ class RegisterController extends Controller
         }  
     }
 
-    private function CreateNewUser($request) // is this not?
+    private function CreateNewUser($request)
     {
         $user = $this->user->create($request->only('first_name', 'last_name', 'email', 'password', 'is_term_accept', 'mobile', 'isAdvocate'));
         event(new UserRegistered($user));
