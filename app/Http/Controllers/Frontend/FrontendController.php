@@ -46,10 +46,10 @@ class FrontendController extends Controller
         //Mail::to($mail)->send(new Welcome($username));
         
         $data['username'] = "This is Test Mail Tuts Make";
-        $this->$mail = 'winczewskittom@gmail.com';
+        $this->mail = 'winczewskittom@gmail.com';
         Mail::send('emails.welcome', $data, function($message) {
  
-            $message->to($this->$mail, 'Receiver Name')
+            $message->to($this->mail, 'Receiver Name')
  
                     ->subject('Tuts Make Mail');
         });  
