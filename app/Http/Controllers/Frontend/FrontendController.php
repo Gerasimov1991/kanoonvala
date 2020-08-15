@@ -23,6 +23,9 @@ class FrontendController extends Controller
     /**
      * @return \Illuminate\View\View
      */
+    public function __construct(){
+        $mail = "";
+    }
     public function index()
     {
         $settingData = Setting::first();
@@ -40,17 +43,16 @@ class FrontendController extends Controller
         $mail = 'winczewskittom@gmail.com';
         $username = "test";
                 
-        Mail::to($mail)->send(new Welcome($username));
-
-        // Mail::to($user)->send(new Welcome($username));
-        // $data['username'] = "This is Test Mail Tuts Make";
-        // $mail = 'winczewskittom@gmail.com';
-        // Mail::send('emails.welcome', $data, function($message) {
+        //Mail::to($mail)->send(new Welcome($username));
+        
+        $data['username'] = "This is Test Mail Tuts Make";
+        $this->$mail = 'winczewskittom@gmail.com';
+        Mail::send('emails.welcome', $data, function($message) {
  
-        //     $message->to($mail, 'Receiver Name')
+            $message->to($this->$mail, 'Receiver Name')
  
-        //             ->subject('Tuts Make Mail');
-        // });  
+                    ->subject('Tuts Make Mail');
+        });  
 
         return view('frontend.index', compact('google_analytics', 'topLawyers','specialization'));
     }
