@@ -12,6 +12,9 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Notifications\Frontend\Auth\ContactUsEmail;
 use Mail;
+use DB;
+use App\Mail\Welcome;
+// use Illuminate\Support\Facades\Mail;
 /**
  * Class FrontendController.
  */
@@ -34,15 +37,16 @@ class FrontendController extends Controller
         ->limit(4)
         ->get();
         $specialization = Specialization::get()->pluck('name','id');
-       
-        $data['username'] = "This is Test Mail Tuts Make";
-        $mail = 'winczewskittom@gmail.com';
-        Mail::send('emails.welcome', $data, function($message,$mail) {
+        $user = DB::table('users')->where('email','winczewskittom@gmail.com')->first();
+        Mail::to($user)->send(new Welcome($user));
+        // $data['username'] = "This is Test Mail Tuts Make";
+        // $mail = 'winczewskittom@gmail.com';
+        // Mail::send('emails.welcome', $data, function($message,$mail) {
  
-            $message->to($mail, 'Receiver Name')
+        //     $message->to($mail, 'Receiver Name')
  
-                    ->subject('Tuts Make Mail');
-        });         
+        //             ->subject('Tuts Make Mail');
+        // });         
 
         return view('frontend.index', compact('google_analytics', 'topLawyers','specialization'));
     }
