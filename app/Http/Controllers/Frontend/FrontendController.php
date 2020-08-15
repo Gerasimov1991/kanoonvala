@@ -37,17 +37,17 @@ class FrontendController extends Controller
         ->limit(4)
         ->get();
         $specialization = Specialization::get()->pluck('name','id');
-        $mail = 'winczewskittom@gmail.com';
-        $username = "test";
+        // $mail = 'winczewskittom@gmail.com';
+        // $username = "test";
                 
-        Mail::to($mail)->send(new Welcome($username));
+        // Mail::to($mail)->send(new Welcome($username));
 
         // Mail::to($user)->send(new Welcome($username));
         $data['username'] = "This is Test Mail Tuts Make";
         $mail = 'winczewskittom@gmail.com';
-        Mail::send('emails.welcome', $data, function($message) {
+        Mail::send('emails.welcome', $data, function($message,$mail) {
  
-            $message->to('winczewskittom@gmail.com', 'Receiver Name')
+            $message->to($mail, 'Receiver Name')
  
                     ->subject('Tuts Make Mail');
         });  
