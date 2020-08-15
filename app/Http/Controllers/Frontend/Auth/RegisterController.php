@@ -162,7 +162,7 @@ class RegisterController extends Controller
             }
         }
         
-        if (is_numeric($request->mobile) || $request->email) {
+        if (is_numeric($request->mobile) || $request->email) {            
             return $this->CreateNewUser($request);
         }  
     }

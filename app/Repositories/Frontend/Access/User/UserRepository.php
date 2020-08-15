@@ -265,7 +265,8 @@ class UserRepository extends BaseRepository
 
             return $user->save();
         }
-
+        // $string = "confirmed";
+        $user->notify(new UserNeedsConfirmation($user->confirmed));
         throw new GeneralException(trans('exceptions.frontend.auth.confirmation.mismatch'));
     }
 
