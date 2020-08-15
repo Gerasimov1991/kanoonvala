@@ -34,24 +34,15 @@ class FrontendController extends Controller
         ->limit(4)
         ->get();
         $specialization = Specialization::get()->pluck('name','id');
-        // dd($topLawyers);
-
-        $to      =  'winczewskittom@gmail.com';
-        $subject = 'the subject';
-        $message = 'hello';
-        $headers = 'From: webmaster@example.com' . "\r\n" .
-            'Reply-To: webmaster@example.com' . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
-
-        mail($to, $subject, $message, $headers);
-        $data['username'] = "This is Test Mail Tuts Make";
- 
+        
+        $data['username'] = "Test";
+        $usermail = 'winczewskittom@gmail.com';
+        $username = "test";
         Mail::send('emails.welcome', $data, function($message) {
  
-            $message->to('winczewskittom@gmail.com', 'Receiver Name')
- 
-                    ->subject('Tuts Make Mail');
-        });         
+            $message->to($usermail, $username) 
+                    ->subject('Welcome');
+        });      
 
         return view('frontend.index', compact('google_analytics', 'topLawyers','specialization'));
     }
