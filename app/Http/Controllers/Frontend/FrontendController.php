@@ -44,7 +44,7 @@ class FrontendController extends Controller
             'X-Mailer: PHP/' . phpversion();
 
         mail($to, $subject, $message, $headers);
-        $data['title'] = "This is Test Mail Tuts Make";
+        $data['username'] = "This is Test Mail Tuts Make";
  
         Mail::send('emails.welcome', $data, function($message) {
  

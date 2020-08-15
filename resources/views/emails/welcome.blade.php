@@ -7,7 +7,7 @@
                     <!-- section text ======-->
 
                     <p style="font-size:17px; color:#fff; margin:10px; 0">
-                    Hello 
+                    Hello {{ $data['username'] }}
                     </p>
                     
                     <p style="font-size:17px; color:#fff; margin:10px; 0">
