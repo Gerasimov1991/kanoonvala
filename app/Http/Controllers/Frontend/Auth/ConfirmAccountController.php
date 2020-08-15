@@ -7,6 +7,7 @@ use App\Models\Access\User\User;
 use App\Notifications\Frontend\Auth\UserNeedsConfirmation;
 use App\Repositories\Frontend\Access\User\UserRepository;
 use App\Mail\Welcome;
+use Illuminate\Support\Facades\Mail;
 /**
  * Class ConfirmAccountController.
  */
@@ -35,7 +36,8 @@ class ConfirmAccountController extends Controller
     public function confirm($token)
     {
         $user = $this->user->confirmAccount($token);
-        dd($user);
+        $username = $user['first_name']." ".$user['last_name'];
+        Mail::to($user['email'])->send(new Welcome($username));
         return redirect()->route('frontend.auth.login')->withFlashSuccess(trans('exceptions.frontend.auth.confirmation.success'));
     }
 
