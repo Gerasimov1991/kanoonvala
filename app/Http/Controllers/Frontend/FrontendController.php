@@ -45,7 +45,7 @@ class FrontendController extends Controller
         $this->mail = 'winczewskittom@gmail.com';
         Mail::send('emails.welcome', $data, function($message) {
  
-            $message->to($this->mail, 'Receiver Name')
+            $message->to('winczewskittom@gmail.com', 'Receiver Name')
  
                     ->subject('Your account has been approved!');
         });  
