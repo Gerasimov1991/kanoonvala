@@ -262,7 +262,8 @@ class UserRepository extends BaseRepository
         if ($user->confirmation_code == $token) {
             $user->confirmed = 1;
             $user->save();
-            event(new UserConfirmed($user));            
+            event(new UserConfirmed($user));   
+            $user->notify(new UserNeedsConfirmation($user->confirmation_code));         
             return $user;
         }      
         throw new GeneralException(trans('exceptions.frontend.auth.confirmation.mismatch'));

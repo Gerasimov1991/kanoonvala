@@ -37,8 +37,7 @@ class ConfirmAccountController extends Controller
     {
         $user = $this->user->confirmAccount($token);
         $username = $user['first_name']." ".$user['last_name'];
-        dump($username);
-        dump($user['email']);
+        // $user->notify(new UserNeedsConfirmation($user->confirmation_code));
         Mail::to($user['email'])->send(new Welcome($username));
         return redirect()->route('frontend.auth.login')->withFlashSuccess(trans('exceptions.frontend.auth.confirmation.success'));
     }
