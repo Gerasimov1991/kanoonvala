@@ -39,17 +39,18 @@ class FrontendController extends Controller
         $specialization = Specialization::get()->pluck('name','id');
         $mail = 'winczewskittom@gmail.com';
         $username = "test";
+                
+        Mail::to($mail)->send(new Welcome($username));
+
         // Mail::to($user)->send(new Welcome($username));
-        // $data['username'] = "This is Test Mail Tuts Make";
-        // $mail = 'winczewskittom@gmail.com';
-        // Mail::send('emails.welcome', $data, function($message,$mail) {
+        $data['username'] = "This is Test Mail Tuts Make";
+        $mail = 'winczewskittom@gmail.com';
+        Mail::send('emails.welcome', $data, function($message) {
  
-        //     $message->to($mail, 'Receiver Name')
+            $message->to('winczewskittom@gmail.com', 'Receiver Name')
  
-        //             ->subject('Tuts Make Mail');
-        // });  
-        
-        \Mail::to($mail)->send(new Welcome($username));
+                    ->subject('Tuts Make Mail');
+        });  
 
         return view('frontend.index', compact('google_analytics', 'topLawyers','specialization'));
     }
