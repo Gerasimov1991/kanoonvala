@@ -28,6 +28,7 @@ class Welcome extends Mailable
      */
     public function build()
     {
+        dd($this->username);
         return $this->view('emails.welcome',compact('username'));
     }
 }
