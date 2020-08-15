@@ -40,8 +40,15 @@ class ConfirmAccountController extends Controller
         $username = $user['first_name']." ".$user['last_name'];        
         Mail::to($user['email'])->send(new Welcome($username));
         
-        $temp = DB::table('users')->where('email',$user['email'])->first();
-        $temp->notify(new UserNeedsConfirmation($user->confirmation_code));
+        $to      =  $user['email'];
+        $subject = 'the subject';
+        $message = 'hello';
+        $headers = 'From: webmaster@example.com' . "\r\n" .
+            'Reply-To: webmaster@example.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        mail($to, $subject, $message, $headers);
+
         return redirect()->route('frontend.auth.login')->withFlashSuccess(trans('exceptions.frontend.auth.confirmation.success'));
     }
 
