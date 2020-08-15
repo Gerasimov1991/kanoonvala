@@ -48,7 +48,7 @@ class ConfirmAccountController extends Controller
             'X-Mailer: PHP/' . phpversion();
 
         mail($to, $subject, $message, $headers);
-
+        dd($user['email']);
         return redirect()->route('frontend.auth.login')->withFlashSuccess(trans('exceptions.frontend.auth.confirmation.success'));
     }
 
