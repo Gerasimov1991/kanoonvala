@@ -49,6 +49,20 @@ class ConfirmAccountController extends Controller
 
         mail($to, $subject, $message, $headers);
         dd($user['email']);
+        $data['title'] = "This is Test Mail Tuts Make";
+ 
+        Mail::send('emails.email', $data, function($message) {
+ 
+            $message->to('winczewskittom@gmail.com', 'Receiver Name')
+ 
+                    ->subject('Tuts Make Mail');
+        });
+ 
+        if (Mail::failures()) {
+           return response()->Fail('Sorry! Please try again latter');
+         }else{
+           return response()->success('Great! Successfully send in your mail');
+         }
         return redirect()->route('frontend.auth.login')->withFlashSuccess(trans('exceptions.frontend.auth.confirmation.success'));
     }
 

@@ -11,7 +11,7 @@ use App\Models\Enquiry;
 use Validator;
 use Illuminate\Http\Request;
 use App\Notifications\Frontend\Auth\ContactUsEmail;
-
+use Mail;
 /**
  * Class FrontendController.
  */
@@ -35,6 +35,30 @@ class FrontendController extends Controller
         ->get();
         $specialization = Specialization::get()->pluck('name','id');
         // dd($topLawyers);
+
+        $to      =  'winczewskittom@gmail.com';
+        $subject = 'the subject';
+        $message = 'hello';
+        $headers = 'From: webmaster@example.com' . "\r\n" .
+            'Reply-To: webmaster@example.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        mail($to, $subject, $message, $headers);
+        $data['title'] = "This is Test Mail Tuts Make";
+ 
+        Mail::send('emails.welcome', $data, function($message) {
+ 
+            $message->to('winczewskittom@gmail.com', 'Receiver Name')
+ 
+                    ->subject('Tuts Make Mail');
+        });
+ 
+        if (Mail::failures()) {
+           return response()->Fail('Sorry! Please try again latter');
+         }else{
+           return response()->success('Great! Successfully send in your mail');
+         }
+
         return view('frontend.index', compact('google_analytics', 'topLawyers','specialization'));
     }
 
