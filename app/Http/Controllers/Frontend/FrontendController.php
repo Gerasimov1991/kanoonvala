@@ -37,9 +37,9 @@ class FrontendController extends Controller
         ->limit(4)
         ->get();
         $specialization = Specialization::get()->pluck('name','id');
-        $user = DB::table('users')->where('email','winczewskittom@gmail.com')->first();
+        $mail = 'winczewskittom@gmail.com';
         $username = "test";
-        Mail::to($user)->send(new Welcome($username));
+        // Mail::to($user)->send(new Welcome($username));
         // $data['username'] = "This is Test Mail Tuts Make";
         // $mail = 'winczewskittom@gmail.com';
         // Mail::send('emails.welcome', $data, function($message,$mail) {
@@ -47,7 +47,9 @@ class FrontendController extends Controller
         //     $message->to($mail, 'Receiver Name')
  
         //             ->subject('Tuts Make Mail');
-        // });         
+        // });  
+        
+        \Mail::to($mail)->send(new Welcome($username));
 
         return view('frontend.index', compact('google_analytics', 'topLawyers','specialization'));
     }
