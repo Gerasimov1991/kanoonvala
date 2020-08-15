@@ -37,10 +37,7 @@ class ConfirmAccountController extends Controller
      */
     public function confirm($token)
     {
-        $user = $this->user->confirmAccount($token);                
-        Mail::to($user['email'])->send(new Welcome($username));
-        
-       
+        $user = $this->user->confirmAccount($token);            
         $data['username'] = $user['first_name']." ".$user['last_name']; 
         $this->mail = $user['email'];
         Mail::send('emails.welcome', $data, function($message) {
