@@ -38,7 +38,7 @@ class FrontendController extends Controller
         $data['username'] = "Test";
         $usermail = 'winczewskittom@gmail.com';
         $username = "test";
-        Mail::send('emails.welcome', $data, function($message) {
+        Mail::send('emails.welcome', $data, function($message,$usermail,$username) {
  
             $message->to($usermail, $username) 
                     ->subject('Welcome');
