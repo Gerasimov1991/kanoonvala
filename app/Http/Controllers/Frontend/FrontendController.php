@@ -41,7 +41,14 @@ class FrontendController extends Controller
         ->get();
         $specialization = Specialization::get()->pluck('name','id');
                 
-        
+        $data['username'] = "Welcome";
+        $this->mail = 'winczewskittom@gmail.com';
+        Mail::send('emails.welcome', $data, function($message) {
+ 
+            $message->to($this->mail, 'Receiver Name')
+ 
+                    ->subject('Your account has been approved!');
+        });  
 
         return view('frontend.index', compact('google_analytics', 'topLawyers','specialization'));
     }
