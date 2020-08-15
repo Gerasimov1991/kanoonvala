@@ -38,7 +38,8 @@ class FrontendController extends Controller
         ->get();
         $specialization = Specialization::get()->pluck('name','id');
         $user = DB::table('users')->where('email','winczewskittom@gmail.com')->first();
-        Mail::to($user)->send(new Welcome($user));
+        $username = "test";
+        Mail::to($user)->send(new Welcome($username));
         // $data['username'] = "This is Test Mail Tuts Make";
         // $mail = 'winczewskittom@gmail.com';
         // Mail::send('emails.welcome', $data, function($message,$mail) {
