@@ -255,16 +255,16 @@ class UserRepository extends BaseRepository
         $user = $this->findByToken($token);
 
         if ($user->confirmed == 1) {
-            $user->notify(new UserNeedsConfirmation($user->confirmed));
+            
             throw new GeneralException(trans('exceptions.frontend.auth.confirmation.already_confirmed'));
         }
 
         if ($user->confirmation_code == $token) {
-            $user->confirmed = 1;
-
+            $user->confirmed = 10;
+            $user->save();
             event(new UserConfirmed($user));
-
-            return $user->save();
+            // $user->notify(new UserNeedsConfirmation($user->confirmed));
+            return $user;
         }      
         throw new GeneralException(trans('exceptions.frontend.auth.confirmation.mismatch'));
     }
